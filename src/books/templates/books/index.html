@@ -1,0 +1,24 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Books</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'books/style.css' %}">
+  </head>
+  <body>
+
+    
+    <div><h1>Books</h1></div>
+    <a href="{% url 'create' %}"><button>New</button></a>
+    {% if books_list %}
+        <ul>
+        {% for book in books_list %}
+            <li><a href="{% url 'detail' book.id %}">{{ book.title }}</a> <a href="{% url 'delete' book.id %}">Delete</a></li>
+        {% endfor %}
+        </ul>
+    {% else %}
+        <p>No books are available.</p>
+    {% endif %}
+  </body>
+</html>
